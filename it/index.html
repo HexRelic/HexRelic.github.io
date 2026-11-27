@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WitnessClip: registratore vocale Android per prove verificabili | HexRelic</title>
-<meta name="description" content="WitnessClip è un registratore vocale per Android, libero e open source, che sigilla ogni registrazione con firme hardware e marche temporali qualificate UE, così chiunque può verificare che non è stata modificata.">
+<title>HexRelic: app Android open source e il loro repository F-Droid</title>
+<meta name="description" content="App Android libere e open source di HexRelic, senza account, senza pubblicità e senza tracciamento. Aggiungi una volta il repository F-Droid di HexRelic per installarle e aggiornarle tutte.">
 <link rel="canonical" href="https://hexrelic.github.io/it/">
 <link rel="alternate" hreflang="en" href="https://hexrelic.github.io/">
 <link rel="alternate" hreflang="it" href="https://hexrelic.github.io/it/">
 <link rel="alternate" hreflang="x-default" href="https://hexrelic.github.io/">
-<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="icon" type="image/png" href="/favicon.png">
 <meta name="theme-color" content="#e9efea" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1c28" media="(prefers-color-scheme: dark)">
 
@@ -17,46 +17,38 @@
 <meta property="og:site_name" content="HexRelic">
 <meta property="og:locale" content="it_IT">
 <meta property="og:locale:alternate" content="en_GB">
-<meta property="og:title" content="WitnessClip: registrazioni con la prova dentro">
-<meta property="og:description" content="Registratore vocale per Android, libero e open source, che sigilla ogni registrazione così chiunque può verificare che non è stata modificata.">
+<meta property="og:title" content="HexRelic: app di cui fidarti davvero">
+<meta property="og:description" content="App Android libere e open source, senza account, senza pubblicità e senza tracciamento, in un unico repository F-Droid firmato.">
 <meta property="og:url" content="https://hexrelic.github.io/it/">
-<meta property="og:image" content="https://hexrelic.github.io/assets/og-image.png">
-<meta property="og:image:width" content="1024">
-<meta property="og:image:height" content="500">
+<meta property="og:image" content="https://hexrelic.github.io/assets/og-home-it.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 
 <script>
-/* prima del primo disegno: tema salvato, e inglese per chi lo ha scelto */
+/* prima del primo disegno: link alla vecchia pagina di WitnessClip, tema salvato, e inglese per chi lo ha scelto */
 (function () {
   var d = document.documentElement; d.classList.add("js");
+  if (/^#(how|try|features|install|faq)$/.test(location.hash)) { location.replace("/it/witnessclip/" + location.hash); return; }
   try {
     var t = localStorage.getItem("theme"); if (t) d.dataset.theme = t;
-    if (localStorage.getItem("lang") === "en") location.replace("../" + location.hash);
+    if (localStorage.getItem("lang") === "en") location.replace("/" + location.hash);
   } catch (e) {}
 })();
 </script>
-<link rel="preload" href="../fonts/charter-bold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../fonts/charter-regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/site.css">
+<link rel="preload" href="/fonts/charter-bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/charter-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/home.css">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "WitnessClip",
-  "operatingSystem": "Android 9+",
-  "applicationCategory": "UtilitiesApplication",
-  "description": "Registratore vocale per Android che sigilla ogni registrazione con firme hardware e marche temporali qualificate UE, così chiunque può verificare che non è stata modificata.",
+  "@type": "WebSite",
+  "name": "HexRelic",
   "url": "https://hexrelic.github.io/it/",
-  "image": "https://hexrelic.github.io/assets/witnessclip-icon.png",
-  "screenshot": "https://hexrelic.github.io/assets/shot-1.webp",
-  "downloadUrl": "https://github.com/HexRelic/WitnessClip/releases",
-  "softwareVersion": "0.1.0",
   "inLanguage": ["it", "en"],
-  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
-  "isAccessibleForFree": true,
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
-  "author": { "@type": "Person", "name": "HexRelic", "url": "https://github.com/HexRelic" }
+  "publisher": { "@type": "Person", "name": "HexRelic", "url": "https://github.com/HexRelic" }
 }
 </script>
 </head>
@@ -64,51 +56,62 @@
 
 <header class="top" id="top-bar">
   <div class="wrap">
-    <a class="brand" href="#"><img src="../assets/hexrelic-seal.png" width="256" height="256" alt="">HexRelic</a>
+    <a class="brand" href="/it/"><img src="/assets/hexrelic-seal.png" width="256" height="256" alt="">HexRelic</a>
     <nav aria-label="Principale">
-      <a href="#how">Come funziona</a>
-      <a href="#try">Provala</a>
-      <a href="#faq">Domande</a>
-      <a class="keep" href="https://github.com/HexRelic/WitnessClip">Codice sorgente</a>
+      <a href="#apps">App</a>
+      <a href="#add">Aggiungi il repository</a>
+      <a href="#checks">Come si verifica</a>
+      <a class="keep" href="#questions">Domande</a>
     </nav>
     <div class="prefs">
-      <a class="lang" href="../" hreflang="en" lang="en" data-lang="en" title="Read in English" aria-label="Read in English">EN</a>
+      <a class="lang" href="/" hreflang="en" lang="en" data-lang="en" title="Read in English" aria-label="Read in English">EN</a>
       <button class="theme" id="theme" type="button" aria-label="Cambia tema">
         <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
         <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
       </button>
     </div>
-    <a class="btn btn-ink btn-sm" href="#install">Installa</a>
+    <a class="btn btn-ink btn-sm" href="#add">Aggiungi</a>
   </div>
 </header>
 
 <main>
 
-  <!-- hero -->
-  <div class="hero">
+  <!-- apertura: il repository -->
+  <div class="hero home-hero">
     <div class="wrap">
       <div>
-        <div class="app"><img src="../assets/witnessclip-icon.png" width="192" height="192" alt=""><span><b>WitnessClip</b> per Android, versione 0.1.0</span></div>
-        <h1><span>Registrazioni</span> <span>con la prova dentro.</span></h1>
-        <p class="lead">Un registratore vocale per le conversazioni a cui partecipi. Sigilla l'audio mentre registri,
-          così chiunque potrà poi verificare che nulla è stato cambiato e quando è stato registrato, senza l'app e
-          senza doversi fidare della parola di nessuno.</p>
+        <h1><span>App di cui</span> <span>fidarti davvero.</span></h1>
+        <p class="lead">App Android libere e open source, senza account, senza pubblicità e senza tracciamento. Sono tutte in
+          un unico repository F-Droid, firmate da HexRelic, e ognuna si può ricompilare dal sorgente
+          ottenendo esattamente gli stessi byte.</p>
         <div class="ctas">
-          <a class="btn btn-ink" href="#install"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>Installala gratis</a>
-          <a class="btn btn-line" href="#try">Prova a modificarne una</a>
+          <a class="btn btn-ink" href="https://fdroid.link/#https://hexrelic.github.io/fdroid/repo?fingerprint=BB1709DC3912D984DF24876838BCF2A168500F2072516125BA6C3BF942E1731E"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Aggiungi il repository</a>
+          <a class="btn btn-line" href="#apps">Guarda le app</a>
         </div>
-        <p class="fine">Libera e open source. Nessun account. Android 9 o successivo, in italiano e in inglese.</p>
+        <p class="fine">Funziona con F-Droid, Droid-ify e Neo Store. Ogni app è anche su GitHub e su Obtainium.</p>
       </div>
 
-      <figure class="hero-visual" id="hero-visual">
-        <svg class="watermark" viewBox="-320 -320 640 640" aria-hidden="true"><g id="watermark"></g></svg>
-        <div class="phone"><img src="../assets/screen-record.webp" width="564" height="1197" fetchpriority="high"
-          alt="Schermata iniziale di WitnessClip: un grande tasto per registrare, il microfono scelto e le registrazioni recenti segnate come sigillate"></div>
-        <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5 10 17l9-10"/></svg>FLAC 24 bit senza perdita</div>
-        <div class="live" aria-hidden="true">
-          <div class="live-top"><span class="rec"><i></i>Registrazione</span><span class="live-clock" id="live-clock">0:00</span></div>
-          <div class="live-wave" id="live-wave"></div>
-          <ul class="live-log" id="live-log"></ul>
+      <figure class="cert" aria-labelledby="cert-title">
+        <svg class="cert-rose" viewBox="-230 -230 460 460" aria-hidden="true"><g id="cert-rose"></g></svg>
+        <div class="cert-head">
+          <img src="/assets/hexrelic-seal.png" width="256" height="256" alt="">
+          <div><b id="cert-title">Repository F-Droid di HexRelic</b><span>Due app, firmate da HexRelic</span></div>
+        </div>
+        <dl>
+          <div>
+            <dt>Indirizzo <button class="copy" type="button" data-copy="repo-addr">Copia</button></dt>
+            <dd><code class="addr" id="repo-addr">https://hexrelic.github.io/fdroid/repo</code></dd>
+          </div>
+          <div>
+            <dt>Impronta (SHA-256) <button class="copy" type="button" data-copy="repo-fp">Copia</button></dt>
+            <dd><code class="fp-grid" id="repo-fp"><span>BB17</span> <span>09DC</span> <span>3912</span> <span>D984</span> <span>DF24</span> <span>8768</span> <span>38BC</span> <span>F2A1</span> <span>6850</span> <span>0F20</span> <span>7251</span> <span>6125</span> <span>BA6C</span> <span>3BF9</span> <span>42E1</span> <span>731E</span></code></dd>
+          </div>
+        </dl>
+        <div class="cert-foot">
+          <img class="qr-s" src="/assets/qr-fdroid.svg" width="102" height="102" alt="Codice QR: aggiungi il repository F-Droid di HexRelic">
+          <p>Inquadralo con il tuo client F-Droid. Quando aggiunge il repository, il client mostra questa impronta:
+            se le due non coincidono, non aggiungerlo.</p>
+          <a class="btn btn-ink" href="https://fdroid.link/#https://hexrelic.github.io/fdroid/repo?fingerprint=BB1709DC3912D984DF24876838BCF2A168500F2072516125BA6C3BF942E1731E">Aggiungi il repository</a>
         </div>
       </figure>
     </div>
@@ -116,255 +119,162 @@
 
   <div class="band" aria-hidden="true"></div>
 
-  <div class="statement">
+  <!-- le app -->
+  <section class="sec" id="apps">
     <div class="wrap">
-      <p>Un normale file audio si può tagliare, montare o ridatare con programmi gratuiti, e il risultato sembra
-        identico all'originale. WitnessClip registra la prova insieme al suono, così la prima domanda su qualsiasi
-        registrazione, «è stata modificata?», ha una risposta.</p>
-    </div>
-  </div>
+      <h2>Cosa c'è nel repository.</h2>
+      <p class="lede">Ogni app fa un solo lavoro, funziona senza account e ha la sua pagina con tutti i dettagli.</p>
 
-  <!-- come funziona -->
-  <section class="sec" id="how">
-    <div class="wrap">
-      <h2>Sigillata mentre registri, non dopo.</h2>
-      <p class="lede">Ecco il primo minuto di una registrazione, come lo scrive WitnessClip.</p>
-
-      <div class="chart" id="chart">
-        <div class="chart-head"><span>registrazione.flac</span><span id="chart-state"><b>0:00</b> registrati</span></div>
-        <div class="paper" id="paper">
-          <svg class="trace" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true">
-            <defs><clipPath id="trace-clip"><rect id="trace-rect" x="0" y="0" width="0" height="140"/></clipPath></defs>
-            <path id="trace-path" clip-path="url(#trace-clip)" d=""/>
-          </svg>
-          <div class="pen" id="pen" style="left:0"></div>
-        </div>
-        <div class="axis"><span>0:00</span><span>0:10</span><span>0:20</span><span>0:30</span><span>0:40</span><span>0:50</span><span>1:00</span></div>
-        <div class="legend" aria-hidden="true"><span><i class="ts"></i>ora certificata</span><span><i></i>firmata</span></div>
-      </div>
-
-      <div class="cadence">
-        <div>
-          <h3>Ogni secondo</h3>
-          <p>Appena un secondo di audio viene catturato, riceve un'impronta SHA-256 ed è concatenato ai precedenti
-            in un albero di Merkle.</p>
-        </div>
-        <div>
-          <h3>Ogni dieci secondi</h3>
-          <p>Una chiave nell'hardware sicuro del telefono firma la catena. La chiave è creata solo per questa
-            registrazione, non può essere copiata fuori dal telefono e viene distrutta quando la registrazione è
-            sigillata.</p>
-        </div>
-        <div>
-          <h3>All'inizio, ogni cinque minuti, alla fine</h3>
-          <p>Servizi europei qualificati di marca temporale (Sectigo, ACCV e Izenpe) certificano l'ora. Viene
-            inviata solo un'impronta, mai l'audio, e non serve alcun account.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- provala -->
-  <section class="sec try" id="try">
-    <div class="wrap">
-      <div>
-        <h2>Prova a modificarne una.</h2>
-        <p class="lede">Questa è una registrazione di 30 secondi con il suo sigillo. Scegli un secondo qualsiasi e
-          cambialo, come farebbe qualcuno con un programma di editing audio. La verifica indica il secondo esatto
-          che non corrisponde più.</p>
-        <p class="hint">Il file vero è un normale FLAC che si ascolta con qualsiasi lettore. La prova viaggia al suo
-          interno.</p>
-      </div>
-      <div class="bench">
-        <div class="bench-top"><b>registrazione.flac</b><span>30 secondi, 48 kHz, 24 bit</span></div>
-        <div class="mini-box">
-          <svg class="rosette" viewBox="-170 -170 340 340" aria-hidden="true">
-            <g class="rings" id="mini-rings"></g>
-            <circle class="disc" r="50"/>
-          </svg>
-          <div class="mini-dial" aria-hidden="true"><span><b id="mini-n">30</b>su 30 integri</span></div>
-          <div class="stamp" id="stamp" aria-hidden="true"></div>
-        </div>
-        <div class="wave" id="wave" role="group" aria-label="I secondi della registrazione. Attivane uno per modificarlo."></div>
-        <div class="wave-axis" aria-hidden="true"><span>0:00</span><span>0:10</span><span>0:20</span><span>0:30</span></div>
-        <div class="verdict" id="verdict" aria-live="polite">
-          <svg viewBox="0 0 24 24" id="v-icon" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
-          <span class="msg" id="v-msg">Tutti i 30 secondi corrispondono ai loro sigilli. La registrazione è integra.</span>
-          <button type="button" id="v-reset" hidden>Annulla le modifiche</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- schermate -->
-  <section class="sec screens">
-    <div class="wrap">
-      <h2>Un tasto per iniziare. Il resto avviene da solo.</h2>
-      <div class="viewer-wrap">
-        <div class="tabs" role="tablist" aria-label="Schermate dell'app" aria-orientation="vertical" id="shot-tabs">
-          <span class="ind" aria-hidden="true"></span>
-          <button role="tab" id="st-1" aria-controls="sf-1" aria-selected="true"><b>Registrazione</b><span>Tocca una volta per registrare. Ogni registrazione nella schermata iniziale mostra il suo sigillo.</span></button>
-          <button role="tab" id="st-2" aria-controls="sf-2" aria-selected="false" tabindex="-1"><b>Sigillo</b><span>Ogni secondo riceve un'impronta ed è concatenato mentre registri, con una firma ogni dieci secondi.</span></button>
-          <button role="tab" id="st-3" aria-controls="sf-3" aria-selected="false" tabindex="-1"><b>Ora certificata</b><span>Marche temporali qualificate all'inizio, ogni cinque minuti e alla fine.</span></button>
-          <button role="tab" id="st-4" aria-controls="sf-4" aria-selected="false" tabindex="-1"><b>Verifica</b><span>Controlla una registrazione nell'app, o su qualsiasi computer con strumenti gratuiti.</span></button>
-          <button role="tab" id="st-5" aria-controls="sf-5" aria-selected="false" tabindex="-1"><b>Riservatezza</b><span>Nessun account, nessuna pubblicità, nessun tracciamento. Le registrazioni restano sul telefono.</span></button>
-        </div>
-        <div class="viewer">
-          <figure class="active" id="sf-1" role="tabpanel" aria-labelledby="st-1"><img src="../assets/shot-1.webp" width="432" height="768" loading="lazy" alt="Schermata iniziale con il tasto per registrare e un elenco di registrazioni sigillate"><figcaption><b>Registrazione</b>Tocca una volta per registrare. Ogni registrazione mostra il suo sigillo.</figcaption></figure>
-          <figure id="sf-2" role="tabpanel" aria-labelledby="st-2"><img src="../assets/shot-2.webp" width="432" height="768" loading="lazy" alt="Schermata di registrazione con un'impronta per ogni secondo"><figcaption><b>Sigillo</b>Ogni secondo con la sua impronta, firmato ogni dieci secondi.</figcaption></figure>
-          <figure id="sf-3" role="tabpanel" aria-labelledby="st-3"><img src="../assets/shot-3.webp" width="432" height="768" loading="lazy" alt="Ore certificate da servizi qualificati UE"><figcaption><b>Ora certificata</b>Marche temporali qualificate all'inizio, ogni cinque minuti e alla fine.</figcaption></figure>
-          <figure id="sf-4" role="tabpanel" aria-labelledby="st-4"><img src="../assets/shot-4.webp" width="432" height="768" loading="lazy" alt="Verifica di una registrazione: originale, nemmeno un campione modificato"><figcaption><b>Verifica</b>Nell'app, o su qualsiasi computer con strumenti gratuiti.</figcaption></figure>
-          <figure id="sf-5" role="tabpanel" aria-labelledby="st-5"><img src="../assets/shot-5.webp" width="432" height="768" loading="lazy" alt="Impostazioni: nessun account, nessuna pubblicità, nessun tracciamento, funziona senza rete"><figcaption><b>Riservatezza</b>Nessun account, nessuna pubblicità, nessun tracciamento.</figcaption></figure>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- caratteristiche -->
-  <section class="sec" id="features" style="padding-top:40px">
-    <div class="wrap spec-wrap">
-      <div>
-        <h2>Fatta per un solo scopo.</h2>
-        <p class="lede">Niente che possa indebolire una registrazione quando qualcuno la mette in dubbio.</p>
-      </div>
-      <dl class="spec">
-        <div><dt>Audio</dt><dd>FLAC senza perdita, 48 kHz e 24 bit, mono o stereo</dd></div>
-        <div><dt>Microfoni</dt><dd>Del telefono, a filo, USB o Bluetooth</dd></div>
-        <div><dt>Schermo spento</dt><dd>Continua a registrare. Le interruzioni sono scritte nel sigillo, non nascoste</dd></div>
-        <div><dt>Modifiche</dt><dd>Nessuna, di proposito. Avvia, ferma, segna un momento, aggiungi una nota</dd></div>
-        <div><dt>Arresti</dt><dd>Se l'app viene chiusa o la batteria si scarica, tutto fino all'ultimo secondo viene recuperato e sigillato</dd></div>
-        <div><dt>Esportazione</dt><dd>Relazione PDF/A e pacchetto di prova ASiC-E, con esportazione divisa facoltativa per i sistemi di deposito dei tribunali</dd></div>
-        <div><dt>Verifica</dt><dd>Verificatore integrato nell'app, più uno a riga di comando per computer</dd></div>
-        <div><dt>Discrezione</dt><dd>Posizione, blocco dell'app e schermo discreto, tutti facoltativi</dd></div>
-        <div><dt>Riservatezza</dt><dd>Funziona senza rete. Nessun account, nessuna pubblicità, nessuna statistica</dd></div>
-        <div><dt>Sorgente</dt><dd>GPL-3.0-or-later, con compilazione riproducibile</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <!-- verifica -->
-  <section class="sec verify">
-    <div class="wrap">
-      <div>
-        <h2>Chiunque può verificarla, anche senza l'app.</h2>
-        <ul class="ticks">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17l9-10"/></svg><span>Ogni pacchetto di prova contiene un file <code>VERIFY.txt</code> che spiega i controlli con <code>sha256sum</code>, <code>ffmpeg</code> e <code>openssl</code>.</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17l9-10"/></svg><span>Oppure usa il verificatore open source su qualsiasi computer con JDK 17.</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17l9-10"/></svg><span>Cosa dimostra ogni controllo, e cosa no, è messo per iscritto per avvocati e periti.</span></li>
-        </ul>
-        <a class="btn btn-line" href="https://github.com/HexRelic/WitnessClip/blob/HEAD/docs/TRIAL-GUARANTEES.md" hreflang="en"><span>Leggi cosa dimostra una registrazione <span class="en-only">(in inglese)</span></span></a>
-      </div>
-      <div class="term" role="img" aria-label="Comandi per verificare una registrazione su un computer: clona il repository di WitnessClip, poi avvia il verificatore su registrazione.flac">
-        <div class="term-bar"><i></i><i></i><i></i></div>
-<pre id="term"><span class="c"># scarica il verificatore</span>
-<span class="p">$ </span>git clone https://github.com/HexRelic/WitnessClip
-<span class="p">$ </span>cd WitnessClip
-
-<span class="c"># verifica una registrazione</span>
-<span class="p">$ </span>./gradlew :core:run --args="registrazione.flac"
-<span class="p">$ </span><span class="cursor"></span></pre>
-      </div>
-    </div>
-  </section>
-
-  <!-- installa -->
-  <section class="sec" id="install">
-    <div class="wrap">
-      <h2>Scegli come installarla.</h2>
-      <p class="lede">Ogni modo installa la stessa app, firmata con la stessa chiave, così puoi cambiare in seguito
-        senza reinstallarla. Da computer, inquadra il codice con il telefono.</p>
-
-      <div class="installer">
-        <div class="tabs" role="tablist" aria-label="Modi per installarla" aria-orientation="vertical" id="way-tabs">
-          <span class="ind" aria-hidden="true"></span>
-          <button role="tab" id="wt-1" aria-controls="wp-1" aria-selected="true"><b>Obtainium</b><span>Il più semplice. Tiene WitnessClip aggiornata da sola.</span></button>
-          <button role="tab" id="wt-2" aria-controls="wp-2" aria-selected="false" tabindex="-1"><b>Repository F-Droid</b><span>Per chi usa F-Droid, Droid-ify o Neo Store.</span></button>
-          <button role="tab" id="wt-3" aria-controls="wp-3" aria-selected="false" tabindex="-1"><b>File APK</b><span>Installala a mano e controlla tu gli aggiornamenti.</span></button>
-        </div>
-        <div class="panels">
-          <div class="panel" id="wp-1" role="tabpanel" aria-labelledby="wt-1">
-            <div>
-              <h3>Aggiungila a Obtainium</h3>
-              <p>Obtainium installa WitnessClip direttamente dalle release ufficiali e la aggiorna quando esce una
-                nuova versione.</p>
-              <p class="note">Prima ti serve l'<a href="https://obtainium.imranr.dev/">app Obtainium</a> sul telefono.</p>
-              <a class="btn btn-ink" href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/HexRelic/WitnessClip">Aggiungi a Obtainium</a>
+      <div class="apps-grid">
+        <article class="app-sheet">
+          <div class="info">
+            <div class="app-id"><img src="/assets/witnessclip-icon.png" width="192" height="192" alt=""><div><b>WitnessClip</b><span>Versione 0.1.0, Android 9 o successivo</span></div></div>
+            <p class="what">Un registratore vocale che sigilla l'audio mentre registri, così chiunque può verificare in
+              seguito che non è stato modificato.</p>
+            <ul class="ticks">
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17l9-10"/></svg><span>FLAC senza perdita, con un hash ogni secondo</span></li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17l9-10"/></svg><span>Marche temporali qualificate UE, senza account</span></li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17l9-10"/></svg><span>Verificabile su qualsiasi computer, senza l'app</span></li>
+            </ul>
+            <div class="app-links">
+              <a class="btn btn-line" href="/it/witnessclip/">Scopri WitnessClip</a>
+              <a href="https://github.com/HexRelic/WitnessClip">Codice sorgente</a>
             </div>
-            <div class="qr"><img src="../assets/qr-obtainium.svg" width="168" height="168" alt="Codice QR: aggiungi WitnessClip a Obtainium"><span>Inquadra con il telefono</span></div>
           </div>
-          <div class="panel" id="wp-2" role="tabpanel" aria-labelledby="wt-2" hidden>
-            <div>
-              <h3>Aggiungi il repository HexRelic</h3>
-              <p>Aggiungilo una volta in F-Droid, Droid-ify o Neo Store. WitnessClip si aggiornerà come qualsiasi
-                altra app, e lì compariranno anche le future app di HexRelic.</p>
-              <p class="note">Il tuo store mostrerà questa impronta. Deve corrispondere:</p>
-              <div class="fp"><code id="fp">BB1709DC3912D984DF24876838BCF2A168500F2072516125BA6C3BF942E1731E</code><button type="button" id="fp-copy">Copia</button></div>
-              <a class="btn btn-ink" href="https://fdroid.link/#https://hexrelic.github.io/fdroid/repo?fingerprint=BB1709DC3912D984DF24876838BCF2A168500F2072516125BA6C3BF942E1731E">Aggiungi il repository</a>
+          <div class="app-shot" aria-hidden="true"><img src="/assets/screen-record.webp" width="564" height="1197" loading="lazy" alt=""></div>
+        </article>
+
+        <article class="app-sheet scorch">
+          <div class="info">
+            <div class="app-id"><img src="/assets/scorch/icon-192.png" width="192" height="192" alt=""><div><b>Scorch</b><span>Versione 1.0.0, Android 8 o successivo</span></div></div>
+            <p class="what">Un distruggi-file offline che sovrascrive i file prima di eliminarli, cancella lo spazio
+              libero e toglie la posizione dalle foto.</p>
+            <ul class="ticks">
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17l9-10"/></svg><span>Cinque schemi di sovrascrittura, chiamati col loro nome</span></li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17l9-10"/></svg><span>Nessun permesso di rete</span></li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17l9-10"/></svg><span>Chiaro su cosa la sovrascrittura non può fare</span></li>
+            </ul>
+            <div class="app-links">
+              <a class="btn btn-line" href="/it/scorch/">Scopri Scorch</a>
+              <a href="https://github.com/HexRelic/scorch">Codice sorgente</a>
             </div>
-            <div class="qr"><img src="../assets/qr-fdroid.svg" width="168" height="168" alt="Codice QR: aggiungi il repository F-Droid di HexRelic"><span>Inquadra con il telefono</span></div>
           </div>
-          <div class="panel" id="wp-3" role="tabpanel" aria-labelledby="wt-3" hidden>
-            <div>
-              <h3>Scarica l'APK</h3>
-              <p>Scarica l'APK dalla pagina delle release e aprilo sul telefono. Dovrai controllare tu se escono
-                nuove versioni.</p>
-              <p class="note">Puoi confrontare il certificato di firma con quello nelle
-                <a href="https://github.com/HexRelic/WitnessClip/blob/HEAD/docs/REPRODUCIBLE.md" hreflang="en">note di compilazione</a> (in inglese).</p>
-              <a class="btn btn-ink" href="https://github.com/HexRelic/WitnessClip/releases">Vai alle release</a>
-            </div>
-            <div class="qr"><img src="../assets/qr-releases.svg" width="168" height="168" alt="Codice QR: pagina delle release di WitnessClip"><span>Inquadra con il telefono</span></div>
-          </div>
+          <div class="app-shot" aria-hidden="true"><img src="/assets/scorch/browser.webp" width="540" height="1200" loading="lazy" alt=""></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- aggiungilo -->
+  <section class="sec shade" id="add">
+    <div class="wrap">
+      <h2>Aggiungi il repository una volta.</h2>
+      <p class="lede">Da quel momento le app di HexRelic si installano e si aggiornano nel tuo client F-Droid come
+        qualsiasi altra app, e lì trovi anche quelle nuove.</p>
+      <div class="ways">
+        <div>
+          <h3>Dal telefono</h3>
+          <p>Tocca il pulsante. Il tuo client F-Droid si apre con indirizzo e impronta già compilati: controllali e
+            conferma.</p>
+          <a class="btn btn-ink" href="https://fdroid.link/#https://hexrelic.github.io/fdroid/repo?fingerprint=BB1709DC3912D984DF24876838BCF2A168500F2072516125BA6C3BF942E1731E">Aggiungi il repository</a>
+        </div>
+        <div>
+          <h3>Da un computer</h3>
+          <p>Apri le impostazioni dei repository nel tuo client F-Droid, scegli di aggiungerne uno e inquadra il
+            codice QR in cima a questa pagina.</p>
+        </div>
+        <div>
+          <h3>A mano</h3>
+          <p>Copia l'indirizzo nella schermata del client per aggiungere un repository. Al primo collegamento il
+            client mostra l'impronta: confrontala con quella qui sopra, un gruppo alla volta.</p>
+          <p class="hand-addr"><a href="https://hexrelic.github.io/fdroid/repo" id="hand-addr">https://hexrelic.github.io/fdroid/repo</a><button class="copy" type="button" data-copy="hand-addr">Copia</button></p>
         </div>
       </div>
-      <p class="legal-note">WitnessClip è uno strumento tecnico e non fornisce consulenza legale. Sta a te
-        assicurarti che registrare una conversazione sia consentito dove ti trovi.</p>
+      <p class="alt"><b>Preferisci non aggiungere un repository?</b> Ogni app è anche nella sua pagina delle release
+        su GitHub e su Obtainium. Tutti e tre installano lo stesso file, firmato con la stessa chiave, così puoi
+        cambiare in seguito senza reinstallare.</p>
+    </div>
+  </section>
+
+  <!-- come si verifica -->
+  <section class="sec" id="checks">
+    <div class="wrap">
+      <h2>Come un'app arriva sul tuo telefono.</h2>
+      <p class="lede">Cinque passaggi, e in ognuno c'è qualcosa che tu o il tuo telefono potete verificare invece di
+        fidarvi sulla parola.</p>
+      <ol class="chain">
+        <li>
+          <h3>Sorgente pubblico</h3>
+          <p>Tutto il codice di ogni app è su GitHub con licenza GNU GPL. Niente viene compilato da codice che non
+            puoi leggere.</p>
+        </li>
+        <li>
+          <h3>Compilazione riproducibile</h3>
+          <p>Compilando una release dal suo sorgente si ottiene esattamente lo stesso file, byte per byte. Ogni
+            app spiega come confrontarlo.</p>
+        </li>
+        <li>
+          <h3>Firmata da HexRelic</h3>
+          <p>HexRelic firma ogni app con la sua chiave e ne pubblica il certificato accanto al sorgente.</p>
+        </li>
+        <li>
+          <h3>Controllata prima di entrare</h3>
+          <p>Il repository accetta un'app solo se porta quel certificato, e firma il proprio indice con una chiave
+            separata.</p>
+        </li>
+        <li>
+          <h3>Controllata sul telefono</h3>
+          <p>Il client verifica l'impronta del repository, e Android accetta un aggiornamento solo se è firmato
+            con la stessa chiave dell'app che hai.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
   <!-- domande -->
-  <section class="sec" id="faq" style="padding-top:40px">
+  <section class="sec" id="questions" style="padding-top:40px">
     <div class="wrap faq-wrap">
-      <h2>Prima di installarla.</h2>
+      <h2>Domande.</h2>
       <div class="faq">
         <details>
-          <summary>Il mio audio viene inviato da qualche parte?<span class="x" aria-hidden="true"></span></summary>
-          <p>No. Per ottenere l'ora certificata, l'app invia ai servizi di marca temporale solo un'impronta
-            dell'audio, mai l'audio stesso. Quei servizi sono gratuiti e non richiedono un account. Le registrazioni
-            restano sul telefono finché non le esporti.</p>
+          <summary>Che cos'è un repository F-Droid?<span class="x" aria-hidden="true"></span></summary>
+          <p>Un elenco di app che un client F-Droid può installare e tenere aggiornate, un po' come un piccolo
+            store. F-Droid, Droid-ify e Neo Store possono seguire più repository insieme, quindi aggiungere questo
+            non cambia nient'altro di quello che hai.</p>
         </details>
         <details>
-          <summary>Perché non posso mettere in pausa o tagliare una registrazione?<span class="x" aria-hidden="true"></span></summary>
-          <p>Perché una pausa o un taglio è proprio ciò che qualcuno metterebbe in dubbio in seguito. Puoi invece
-            segnare un momento o aggiungere una nota, e le interruzioni vengono scritte nel sigillo invece di essere
-            nascoste.</p>
+          <summary>È il repository principale di F-Droid?<span class="x" aria-hidden="true"></span></summary>
+          <p>No. Il repository principale è gestito dal progetto F-Droid. Questo è quello di HexRelic, ospitato su
+            GitHub Pages, e pubblica gli stessi file firmati della pagina delle release di ogni app su GitHub.</p>
         </details>
         <details>
-          <summary>E se la batteria si scarica mentre registro?<span class="x" aria-hidden="true"></span></summary>
-          <p>La registrazione non va persa. Tutto fino all'ultimo secondo viene recuperato e sigillato al successivo
-            avvio dell'app, e segnato come interrotto. Lo stesso succede se il sistema chiude l'app.</p>
+          <summary>Da cosa protegge l'impronta?<span class="x" aria-hidden="true"></span></summary>
+          <p>Identifica la chiave che firma l'elenco delle app del repository. Se qualcuno ti passasse una copia del
+            repository, o la modificasse lungo la strada, l'impronta non coinciderebbe e il client la
+            rifiuterebbe.</p>
         </details>
         <details>
-          <summary>Un tribunale accetterà la mia registrazione?<span class="x" aria-hidden="true"></span></summary>
-          <p>Lo decide il tribunale. WitnessClip permette di dimostrare che un file non è stato modificato e quando
-            è stato creato.
-            <a href="https://github.com/HexRelic/WitnessClip/blob/HEAD/docs/TRIAL-GUARANTEES.md" hreflang="en">Cosa dimostra una registrazione</a>
-            (in inglese) spiega cosa stabilisce ogni controllo e cosa no. L'app non fornisce consulenza legale, e
-            sta a te assicurarti che registrare sia consentito dove ti trovi.</p>
+          <summary>Posso passare dal repository a Obtainium o GitHub?<span class="x" aria-hidden="true"></span></summary>
+          <p>Sì. Tutti e tre installano lo stesso file, firmato con la stessa chiave, quindi per Android è la stessa
+            app e si aggiorna da quello che usi.</p>
         </details>
         <details>
-          <summary>Come so che l'app corrisponde al codice sorgente?<span class="x" aria-hidden="true"></span></summary>
-          <p>Le versioni pubblicate sono riproducibili: compilando la stessa versione dal codice pubblico si ottiene
-            un'app identica byte per byte, così chiunque può confermare che l'app pubblicata viene da quel codice.</p>
+          <summary>Le app raccolgono qualcosa?<span class="x" aria-hidden="true"></span></summary>
+          <p>Niente account, niente pubblicità, niente statistiche. L'informativa sulla privacy di ogni app dice
+            esattamente cosa succede ai dati: WitnessClip invia solo un hash dell'audio per ottenere un'ora
+            certificata, e Scorch non ha alcun permesso di rete.</p>
         </details>
         <details>
-          <summary>Quanto costa?<span class="x" aria-hidden="true"></span></summary>
-          <p>Niente. WitnessClip è libera e open source con licenza GNU GPL, versione 3 o successiva, senza
-            pubblicità e senza acquisti in-app.</p>
+          <summary>Questo sito mi traccia?<span class="x" aria-hidden="true"></span></summary>
+          <p>Nessun cookie e nessuna statistica. Il tema e la lingua che scegli restano nel tuo browser. Il sito e
+            il repository sono ospitati su GitHub Pages, e GitHub tiene i propri log dei server, indirizzi IP
+            compresi, secondo la sua
+            <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" hreflang="en">informativa sulla privacy</a> (in inglese).</p>
         </details>
         <details>
-          <summary>È stata usata l'IA per realizzarla?<span class="x" aria-hidden="true"></span></summary>
-          <p>HexRelic sviluppa l'app con l'aiuto di LLM, per velocizzare sviluppo, test e correzioni. L'app non contiene alcuna IA: le registrazioni non vengono mai analizzate,
-            trascritte, migliorate o alterate.</p>
+          <summary>È stata usata l'IA per realizzare le app?<span class="x" aria-hidden="true"></span></summary>
+          <p>HexRelic progetta e sviluppa le app con l'aiuto di modelli linguistici di grandi dimensioni, per
+            velocizzare sviluppo, test e correzioni. Le app in sé non contengono alcuna IA.</p>
         </details>
       </div>
     </div>
@@ -377,13 +287,13 @@
     <div class="wrap">
       <div class="outro-seal">
         <svg viewBox="-110 -110 220 220" aria-hidden="true"><g id="outro-rings"></g></svg>
-        <img src="../assets/hexrelic-seal.png" width="256" height="256" alt="Sigillo di HexRelic">
+        <img src="/assets/hexrelic-seal.png" width="256" height="256" alt="Sigillo di HexRelic">
       </div>
-      <h2>Fatta da HexRelic. Altre app in arrivo.</h2>
-      <p>Le nuove app saranno elencate qui e pubblicate nello stesso repository F-Droid. Aggiungilo una volta e le
-        vedrai quando arrivano.</p>
+      <h2>Fatte da HexRelic.</h2>
+      <p>Domande, problemi o idee sono benvenuti: apri una segnalazione nella pagina GitHub dell'app, oppure
+        scrivi a <a href="mailto:roundish-old-comic@duck.com">roundish-old-comic@duck.com</a>.</p>
       <div class="ctas">
-        <a class="btn btn-ink" href="#install">Installa WitnessClip</a>
+        <a class="btn btn-ink" href="#add">Aggiungi il repository</a>
         <a class="btn btn-line" href="https://github.com/HexRelic">HexRelic su GitHub</a>
       </div>
     </div>
@@ -391,46 +301,47 @@
 </main>
 
 <footer>
-  <div class="micro" aria-hidden="true" id="micro"></div>
+  <div class="micro" aria-hidden="true" id="micro" data-text="hexrelic, app android open source compilate dal codice pubblico "></div>
   <div class="wrap">
     <div class="foot">
       <div>
-        <a class="brand" href="#"><img src="../assets/hexrelic-seal.png" width="256" height="256" alt="">HexRelic</a>
-        <p>App Android open source, compilate dal codice pubblico e firmate dal loro sviluppatore.</p>
+        <a class="brand" href="/it/"><img src="/assets/hexrelic-seal.png" width="256" height="256" alt="">HexRelic</a>
+        <p>App Android open source, compilate dal codice pubblico e firmate da HexRelic.</p>
       </div>
       <div>
-        <h4>WitnessClip</h4>
+        <h4>App</h4>
         <ul>
-          <li><a href="https://github.com/HexRelic/WitnessClip">Codice sorgente</a></li>
-          <li><a href="https://github.com/HexRelic/WitnessClip/releases">Release</a></li>
-          <li><a href="https://github.com/HexRelic/WitnessClip/blob/HEAD/CHANGELOG.md">Novità</a></li>
-          <li><a href="https://github.com/HexRelic/fdroid">Repository F-Droid</a></li>
+          <li><a href="/it/witnessclip/">WitnessClip</a></li>
+          <li><a href="/it/scorch/">Scorch</a></li>
         </ul>
       </div>
       <div>
-        <h4>Documentazione <small>(in inglese)</small></h4>
+        <h4>Repository</h4>
         <ul>
-          <li><a href="https://github.com/HexRelic/WitnessClip/blob/HEAD/docs/TRIAL-GUARANTEES.md" hreflang="en">Cosa dimostra una registrazione</a></li>
-          <li><a href="https://github.com/HexRelic/WitnessClip/blob/HEAD/docs/ARCHITECTURE.md" hreflang="en">Architettura</a></li>
-          <li><a href="https://github.com/HexRelic/WitnessClip/blob/HEAD/docs/REPRODUCIBLE.md" hreflang="en">Compilazione riproducibile</a></li>
-          <li><a href="https://github.com/HexRelic/WitnessClip/blob/HEAD/SECURITY.md" hreflang="en">Politica di sicurezza</a></li>
+          <li><a href="#add">Aggiungilo</a></li>
+          <li><a href="#checks">Come si verifica</a></li>
+          <li><a href="https://github.com/HexRelic/fdroid">Repository su GitHub</a></li>
         </ul>
       </div>
       <div>
         <h4>Contatti</h4>
         <ul>
           <li><a href="mailto:roundish-old-comic@duck.com">roundish-old-comic@duck.com</a></li>
-          <li><a href="https://github.com/HexRelic/WitnessClip/issues">Segnala un problema</a></li>
+          <li><a href="https://github.com/HexRelic">HexRelic su GitHub</a></li>
         </ul>
       </div>
     </div>
     <div class="legal">
-      <span>© 2026 HexRelic. Codice con licenza GPL-3.0-or-later. Il nome e l'icona di WitnessClip sono marchi di HexRelic.</span>
-      <span>Composto in Charter e JetBrains Mono (<a href="../fonts/LICENSES.txt">licenze dei caratteri</a>). Nessun cookie, nessun tracciamento.</span>
+      <span>© 2026 HexRelic. App con licenza GPL-3.0-or-later. I nomi e le icone di WitnessClip e Scorch sono marchi di HexRelic.</span>
+      <span>Composto in Charter e JetBrains Mono (<a href="/fonts/LICENSES.txt">licenze dei caratteri</a>). Nessun cookie, nessun tracciamento.</span>
     </div>
   </div>
 </footer>
 
-<script src="../assets/site.js"></script>
+<script src="/assets/common.js"></script>
+<script>
+  /* la guilloche dietro il certificato */
+  (() => { const g = HR.$("cert-rose"); for (let i = 0; i < 30; i++) HR.addPath(g, HR.ring(120 + i * 3.6, 6, 24, i * .26, 1.6, 7, i * .1)); })();
+</script>
 </body>
 </html>

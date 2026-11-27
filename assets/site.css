@@ -52,7 +52,7 @@
 * { box-sizing: border-box; }
 html { scroll-padding-top: 84px; scroll-behavior: smooth; }
 html, body { overflow-x: clip; }
-body { margin: 0; color: var(--ink); background: var(--paper) url("ground.svg") repeat; font: 400 19px/1.62 var(--serif); -webkit-font-smoothing: antialiased; transition: background-color .35s, color .35s; }
+body { margin: 0; color: var(--ink); background: var(--paper) var(--ground, url("ground.svg")) repeat; font: 400 19px/1.62 var(--serif); -webkit-font-smoothing: antialiased; transition: background-color .35s, color .35s; }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:hover { color: var(--ink); }
@@ -66,7 +66,8 @@ code { font-family: var(--mono); font-size: .8em; background: var(--tint); paddi
 .wrap { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
 .sec { padding: 128px 0; }
 .lede { font-size: 21px; line-height: 1.55; color: var(--ink-2); max-width: 31em; margin: 22px 0 0; }
-.band { height: 16px; background: url("band.svg") repeat-x center; }
+.shade { background: var(--paper-2); }
+.band { height: 16px; background: var(--band, url("band.svg")) repeat-x center; }
 .en-only { font-weight: 400; font-style: italic; }
 
 /* buttons: flat ink, like a printed stamp block */
@@ -299,7 +300,7 @@ code { font-family: var(--mono); font-size: .8em; background: var(--tint); paddi
 /* ---------- footer ---------- */
 footer { background: var(--paper-2); font-size: 16.5px; color: var(--ink-2); }
 .micro { overflow: hidden; white-space: nowrap; font-size: 5px; line-height: 7px; letter-spacing: .08em; color: var(--line); opacity: .8; user-select: none; padding: 4px 0; border-bottom: 1px solid var(--rule); }
-.foot { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 32px; padding: 56px 0 0; }
+.foot { display: grid; grid-template-columns: minmax(0, 1.4fr); grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 32px; padding: 56px 0 0; }
 .foot p { margin: 12px 0 0; max-width: 18em; color: var(--ink-3); }
 .foot h4 { margin: 0 0 12px; font-size: 16.5px; color: var(--ink); }
 .foot h4 small { font-weight: 400; font-style: italic; color: var(--ink-3); font-size: 15px; }
@@ -319,7 +320,7 @@ footer { background: var(--paper-2); font-size: 16.5px; color: var(--ink-2); }
   .hero-visual { max-width: 520px; width: 100%; margin: 0 auto; }
   .statement p { margin-left: 0; }
   .cadence { grid-template-columns: minmax(0, 1fr); gap: 30px; }
-  .foot { grid-template-columns: 1fr 1fr; }
+  .foot { grid-template-columns: 1fr 1fr; grid-auto-flow: row; }
   /* screenshots become a swipeable row with captions */
   #shot-tabs { display: none; }
   .viewer { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -32px; padding: 0 32px 12px; scrollbar-width: none; }

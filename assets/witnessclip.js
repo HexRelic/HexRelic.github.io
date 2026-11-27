@@ -1,5 +1,7 @@
+/* WitnessClip page: the live recording card, the chart recorder, "try to edit one" and the typing terminal. */
 (() => {
-  const L = document.documentElement.lang === "it" ? "it" : "en";
+  const { L, still, $, mss, seeded, level, hex, ring, addPath, tabs, panelTabs } = window.HR;
+  const rand = seeded(20261118);
   const T = {
     en: {
       sealed: "sealed", signed: "chain signed in secure hardware", certified: "certified time",
@@ -10,10 +12,7 @@
       more: (n) => n === 1 ? " One more second doesn't match either." : ` ${n} more seconds don't match either.`,
       stamp: (t) => "Fails at " + t,
       secLabel: (t) => `Second ${t}: change it`,
-      copy: "Copy", copied: "Copied", selected: "Selected",
-      toDark: "Switch to dark theme", toLight: "Switch to light theme",
       term: [["c", "# get the verifier"], ["p", "git clone https://github.com/HexRelic/WitnessClip"], ["p", "cd WitnessClip"], ["", ""], ["c", "# check a recording"], ["p", './gradlew :core:run --args="recording.flac"']],
-      micro: "witnessclip by hexrelic, sealed every second ",
     },
     it: {
       sealed: "sigillato", signed: "catena firmata nell'hardware sicuro", certified: "ora certificata",
@@ -24,56 +23,11 @@
       more: (n) => n === 1 ? " Anche un altro secondo non corrisponde." : ` Anche altri ${n} secondi non corrispondono.`,
       stamp: (t) => "Alterata a " + t,
       secLabel: (t) => `Secondo ${t}: modificalo`,
-      copy: "Copia", copied: "Copiata", selected: "Selezionata",
-      toDark: "Passa al tema scuro", toLight: "Passa al tema chiaro",
       term: [["c", "# scarica il verificatore"], ["p", "git clone https://github.com/HexRelic/WitnessClip"], ["p", "cd WitnessClip"], ["", ""], ["c", "# verifica una registrazione"], ["p", './gradlew :core:run --args="registrazione.flac"']],
-      micro: "witnessclip di hexrelic, sigillata ogni secondo ",
     },
   }[L];
 
-  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const $ = (id) => document.getElementById(id);
-  const NS = "http://www.w3.org/2000/svg";
-  const mss = (t) => Math.floor(t / 60) + ":" + String(t % 60).padStart(2, "0");
-  // fixed seed, so the drawings are the same on every visit
-  const rand = ((a) => () => { a |= 0; a = a + 0x6d2b79f5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; })(20261118);
-  const level = (i, s) => .25 + .75 * Math.abs(Math.sin(i * .71 + s) * Math.cos(i * .23 + s * 2));
-  const hex = (n) => Array.from(crypto.getRandomValues(new Uint8Array(n)), (b) => b.toString(16).padStart(2, "0")).join("");
 
-  /* ===== theme: follows the system until the visitor picks one ===== */
-  const root = document.documentElement, themeBtn = $("theme");
-  const isDark = () => root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-  const labelTheme = () => { const l = isDark() ? T.toLight : T.toDark; themeBtn.setAttribute("aria-label", l); themeBtn.title = l; };
-  themeBtn.addEventListener("click", () => {
-    const next = isDark() ? "light" : "dark";
-    root.dataset.theme = next;
-    try { localStorage.setItem("theme", next); } catch {}
-    labelTheme();
-  });
-  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", labelTheme);
-  labelTheme();
-
-  /* ===== language: remember an explicit choice ===== */
-  document.querySelectorAll("[data-lang]").forEach((a) => a.addEventListener("click", () => {
-    try { localStorage.setItem("lang", a.dataset.lang); } catch {}
-  }));
-
-  /* one ring of a guilloche rosette, in polar form */
-  const ring = (R, A, k, ph, A2, k2, ph2, N = 240) => {
-    let d = "";
-    for (let j = 0; j < N; j++) {
-      const t = (j / N) * Math.PI * 2;
-      const r = R + A * Math.sin(k * t + ph) + A2 * Math.sin(k2 * t + ph2);
-      d += (j ? "L" : "M") + (r * Math.cos(t)).toFixed(1) + " " + (r * Math.sin(t)).toFixed(1);
-    }
-    return d + "Z";
-  };
-  const addPath = (g, d, cls) => {
-    const p = document.createElementNS(NS, "path");
-    p.setAttribute("d", d); p.setAttribute("pathLength", "1");
-    if (cls) p.setAttribute("class", cls);
-    g.appendChild(p); return p;
-  };
   /* a seal made of n seconds: each ring's swing comes from the audio level, its phase from the hash */
   const rosette = (g, n, rIn, rOut, k, seed) => {
     const out = [];
@@ -86,11 +40,6 @@
     }
     return out;
   };
-
-  /* nav background once the page scrolls */
-  const bar = $("top-bar");
-  const onScroll = () => bar.classList.toggle("scrolled", scrollY > 20);
-  addEventListener("scroll", onScroll, { passive: true }); onScroll();
 
   /* ===== hero: the app, with a live recording card ===== */
   {
@@ -229,39 +178,8 @@
     reset.addEventListener("click", () => { secs.forEach((_, i) => setCut(i, false)); judge(); });
   }
 
-  /* ===== tabs (screens and install), with a sliding marker ===== */
-  const tabs = (list, onShow) => {
-    const btns = [...list.querySelectorAll('[role="tab"]')], ind = list.querySelector(".ind");
-    const place = (b) => { ind.style.top = b.offsetTop + "px"; ind.style.height = b.offsetHeight + "px"; };
-    const select = (b, focus) => {
-      btns.forEach((x) => { const on = x === b; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1; });
-      place(b); onShow(b.getAttribute("aria-controls")); if (focus) b.focus();
-    };
-    btns.forEach((b, i) => {
-      b.addEventListener("click", () => select(b));
-      b.addEventListener("keydown", (e) => {
-        const k = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
-        if (k) { e.preventDefault(); select(btns[(i + k + btns.length) % btns.length], true); }
-      });
-    });
-    const sync = () => place(btns.find((b) => b.getAttribute("aria-selected") === "true"));
-    addEventListener("resize", sync); document.fonts.ready.then(sync); sync();
-  };
   tabs($("shot-tabs"), (id) => document.querySelectorAll(".viewer figure").forEach((f) => f.classList.toggle("active", f.id === id)));
-  tabs($("way-tabs"), (id) => document.querySelectorAll(".panel").forEach((p) => {
-    const on = p.id === id;
-    if (on && p.hidden) { p.hidden = false; p.classList.remove("enter"); void p.offsetWidth; p.classList.add("enter"); }
-    if (!on) p.hidden = true;
-  }));
-
-  /* ===== fingerprint copy ===== */
-  const fpBtn = $("fp-copy");
-  fpBtn.textContent = T.copy;
-  fpBtn.addEventListener("click", async () => {
-    try { await navigator.clipboard.writeText($("fp").textContent.trim()); fpBtn.textContent = T.copied; fpBtn.classList.add("done"); }
-    catch { getSelection().selectAllChildren($("fp")); fpBtn.textContent = T.selected; }
-    setTimeout(() => { fpBtn.textContent = T.copy; fpBtn.classList.remove("done"); }, 2200);
-  });
+  panelTabs($("way-tabs"));
 
   /* ===== terminal types itself when it scrolls into view ===== */
   if (!still) {
@@ -293,8 +211,4 @@
     io.observe(term);
   }
 
-  /* ===== outro: a seal ring; microprint in the footer ===== */
-  const og = $("outro-rings");
-  for (let i = 0; i < 14; i++) addPath(og, ring(72 + i * 2.4, 4, 20, i * .32, 1.2, 5, i * .2));
-  $("micro").textContent = T.micro.repeat(60);
 })();

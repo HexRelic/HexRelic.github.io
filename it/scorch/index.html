@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scorch: distruggi-file offline per Android | HexRelic</title>
+<meta name="description" content="Scorch è un distruggi-file per Android, libero e open source. Sovrascrive i file prima di eliminarli, cancella lo spazio libero e toglie i metadati dalle foto, senza permesso di rete.">
+<link rel="canonical" href="https://hexrelic.github.io/it/scorch/">
+<link rel="alternate" hreflang="en" href="https://hexrelic.github.io/scorch/">
+<link rel="alternate" hreflang="it" href="https://hexrelic.github.io/it/scorch/">
+<link rel="alternate" hreflang="x-default" href="https://hexrelic.github.io/scorch/">
+<link rel="icon" type="image/png" href="/assets/scorch/icon-192.png">
+<meta name="theme-color" content="#eff1f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1e2030" media="(prefers-color-scheme: dark)">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HexRelic">
+<meta property="og:locale" content="it_IT">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:title" content="Scorch: certi file meritano il fuoco">
+<meta property="og:description" content="Distruggi-file per Android, libero e open source. Sovrascrive i file prima di eliminarli, cancella lo spazio libero, toglie i metadati dalle foto. Nessun permesso di rete.">
+<meta property="og:url" content="https://hexrelic.github.io/it/scorch/">
+<meta property="og:image" content="https://hexrelic.github.io/assets/scorch/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="600">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>
+/* prima del primo disegno: tema salvato, e inglese per chi lo ha scelto */
+(function () {
+  var d = document.documentElement; d.classList.add("js");
+  try {
+    var t = localStorage.getItem("theme"); if (t) d.dataset.theme = t;
+    if (localStorage.getItem("lang") === "en") location.replace("/scorch/" + location.hash);
+  } catch (e) {}
+})();
+</script>
+<link rel="preload" href="/fonts/charter-bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/charter-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/scorch.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Scorch",
+  "operatingSystem": "Android 8+",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Distruggi-file offline per Android: sovrascrive i file prima di eliminarli, cancella lo spazio libero e toglie i metadati dalle foto. Nessun permesso di rete.",
+  "url": "https://hexrelic.github.io/it/scorch/",
+  "image": "https://hexrelic.github.io/assets/scorch/icon-512.png",
+  "screenshot": "https://hexrelic.github.io/assets/scorch/browser.webp",
+  "downloadUrl": "https://github.com/HexRelic/scorch/releases",
+  "softwareVersion": "1.0.0",
+  "inLanguage": "en",
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "author": { "@type": "Person", "name": "HexRelic", "url": "https://github.com/HexRelic" }
+}
+</script>
+</head>
+<body>
+
+<header class="top" id="top-bar">
+  <div class="wrap">
+    <a class="brand" href="/it/"><img src="/assets/hexrelic-seal.png" width="256" height="256" alt="">HexRelic</a>
+    <nav aria-label="Principale">
+      <a href="#watch">Guardala all'opera</a>
+      <a href="#limits">Limiti</a>
+      <a href="#faq">Domande</a>
+      <a class="keep" href="https://github.com/HexRelic/scorch">Codice sorgente</a>
+    </nav>
+    <div class="prefs">
+      <a class="lang" href="/scorch/" hreflang="en" lang="en" data-lang="en" title="Read in English" aria-label="Read in English">EN</a>
+      <button class="theme" id="theme" type="button" aria-label="Cambia tema">
+        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+    <a class="btn btn-ink btn-sm" href="#install">Installa</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- apertura -->
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <div class="app"><img src="/assets/scorch/icon-192.png" width="192" height="192" alt=""><span><b>Scorch</b> per Android, versione 1.0.0</span></div>
+        <h1><span>Certi file</span> <span>meritano il <span class="fire" id="fire">fuoco</span>.</span></h1>
+        <p class="lead">Un distruggi-file offline. Scorch scrive sopra il contenuto di un file prima di eliminarlo,
+          cancella lo spazio libero lasciato dalle altre app e toglie dalle foto i dati sulla posizione e sulla
+          fotocamera. Non ha alcun permesso di rete, quindi niente di ciò che distruggi può uscire dal telefono.</p>
+        <div class="ctas">
+          <a class="btn btn-ink" href="#install"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>Installala gratis</a>
+          <a class="btn btn-line" href="#watch">Guardala all'opera</a>
+        </div>
+        <p class="fine">Libera e open source. Nessun account. Android 8 o successivo; l'app è in inglese, l'informativa e i termini anche in italiano.</p>
+      </div>
+
+      <figure class="hero-visual" id="hero-visual">
+        <svg class="watermark" viewBox="-320 -320 640 640" aria-hidden="true"><g id="watermark"></g></svg>
+        <div class="phone"><img src="/assets/scorch/browser.webp" width="540" height="1200" fetchpriority="high"
+          alt="Il browser dei file di Scorch con tre file selezionati e il pulsante Shred in basso"></div>
+        <div class="chip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 9a14 14 0 0 1 19 0M5.8 12.6a9.2 9.2 0 0 1 12.4 0M9.2 16.1a4.4 4.4 0 0 1 5.6 0M12 19.6v.1M4 4l16 16"/></svg>Nessun permesso di rete</div>
+        <div class="job" aria-hidden="true">
+          <div class="job-top"><span class="rec"><i></i>Distruzione</span><span class="job-count" id="job-count">1 di 3</span></div>
+          <div class="job-file" id="job-file">bank-statement-2025-03.pdf</div>
+          <div class="job-passes" id="job-passes"></div>
+          <ul class="job-log" id="job-log"></ul>
+        </div>
+      </figure>
+    </div>
+  </div>
+
+  <div class="band" aria-hidden="true"></div>
+
+  <div class="statement">
+    <div class="wrap">
+      <p>Di solito eliminare un file toglie solo la sua voce dalla cartella. Il contenuto resta sulla memoria finché
+        qualcos'altro non finisce per caso nello stesso punto, ed è proprio lì che guardano le app di recupero.
+        Scorch prima ci scrive sopra.</p>
+    </div>
+  </div>
+
+  <!-- guardala all'opera -->
+  <section class="sec shred" id="watch">
+    <div class="wrap">
+      <div>
+        <h2>Guardala all'opera.</h2>
+        <p class="lede">Ecco un piccolo file di testo e cosa gli fa Scorch, byte per byte. Scegli uno schema e premi
+          Distruggi.</p>
+        <fieldset class="sched">
+          <legend>Schema di sovrascrittura</legend>
+          <label><input type="radio" name="schedule" value="zero"><span><b>Una passata, tutti zeri</b></span><small>0x00</small></label>
+          <label><input type="radio" name="schedule" value="random"><span><b>Una passata, casuale crittografico</b></span><small>casuale</small></label>
+          <label><input type="radio" name="schedule" value="rrz" checked><span><b>3 passate: casuale, casuale, zero</b></span><small>casuale, casuale, 0x00 (predefinito)</small></label>
+          <label><input type="radio" name="schedule" value="dod"><span><b>3 passate: DoD 5220.22-M (E)</b></span><small>0x00, 0xFF, casuale</small></label>
+          <label><input type="radio" name="schedule" value="schneier"><span><b>7 passate: Schneier</b></span><small>0xFF, 0x00, 5 × casuale</small></label>
+        </fieldset>
+        <p class="sched-note">Avviene nel tuo browser, su un file inventato. Sul telefono Scorch fa lo stesso con
+          quello vero. Nell'app gli schemi hanno i nomi inglesi.</p>
+      </div>
+
+      <div class="bench file" id="file">
+        <div class="file-head"><b id="file-name">lettera-per-sam.txt</b><span id="file-meta"></span></div>
+        <div class="hexdump-box"><div class="hexdump" id="hexdump" aria-label="Contenuto del file, in esadecimale e come testo"></div></div>
+        <p class="empty">File inesistente. La cartella non lo elenca più.</p>
+        <ol class="passes" id="passes" aria-hidden="true"></ol>
+        <ol class="steps" id="steps">
+          <li>Lo sovrascrive, passata per passata, con un fsync dopo ognuna</li>
+          <li>Rilegge ogni passata e ne confronta lo SHA-256</li>
+          <li>Lo rinomina con nomi casuali, tre volte</li>
+          <li>Lo tronca a zero e lo data 1 gennaio 1980</li>
+          <li>Lo elimina</li>
+        </ol>
+        <div class="shred-foot">
+          <p class="status" id="shred-status" aria-live="polite"></p>
+          <button class="btn btn-fire" type="button" id="shred-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.6 3.2 2.4 4.9 4 6.6 1.6 1.8 3 3.7 3 6.4A7 7 0 0 1 12 22.5a7 7 0 0 1-7-7c0-2.3 1-4.1 2.4-5.6.2 1.7.9 3 2.1 3.7-.4-3.9.9-7.6 2.5-11.1z"/></svg>Distruggi</button>
+          <button class="again" type="button" id="shred-again" hidden>Rimetti a posto il file</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- limiti -->
+  <section class="sec limits" id="limits">
+    <div class="wrap">
+      <div>
+        <h2>Cosa la sovrascrittura non può fare.</h2>
+        <p>I telefoni tengono i file su memoria flash, gestita da un chip controller. Quando un'app scrive sopra un
+          file, di solito il controller mette i nuovi byte in celle fresche e segna le vecchie da ripulire più
+          tardi. Nessuna app, compresa questa, può raggiungere quelle vecchie celle o assicurarsi che siano
+          cancellate.</p>
+        <p>Cosa fa Scorch: il vecchio contenuto non è più raggiungibile attraverso il filesystem, quindi le app di
+          recupero che leggono la memoria nel modo consueto non dovrebbero trovarlo. Sette passate difficilmente
+          fanno meglio di una, e ogni passata consuma un po' il chip; gli schemi più lunghi ci sono per le
+          procedure che li richiedono per nome.</p>
+        <p>Per questo Scorch non protegge al 100% dalle tecniche forensi avanzate: chi ha un laboratorio e i chip
+          di memoria del tuo telefono può ancora trovare ciò che la sovrascrittura non ha raggiunto. È pensata
+          contro le app di recupero e i curiosi, non contro un laboratorio forense.</p>
+        <div class="safest">
+          <b>Se qualcosa non deve mai essere recuperato, tienilo cifrato fin dall'inizio.</b>
+          <p>Android cifra già la tua memoria, e un ripristino dei dati di fabbrica butta via la chiave. È la
+            cancellazione più forte che un telefono abbia.</p>
+        </div>
+        <a class="more" href="https://github.com/HexRelic/scorch/blob/HEAD/docs/USER-GUIDE.md#what-overwriting-can-and-cant-do" hreflang="en">La spiegazione completa nella guida (in inglese)</a>
+      </div>
+
+      <figure class="flash" aria-label="Schema: l'app vede un solo file sovrascritto; sul chip flash i nuovi byte sono andati in celle fresche e le vecchie celle aspettano di essere cancellate">
+        <div class="layer">
+          <span>Cosa vedono le app</span>
+          <div class="seen"><code>lettera-per-sam.txt</code><span>sovrascritto</span></div>
+        </div>
+        <div class="ctrl">Il controller della flash manda i nuovi byte in celle fresche</div>
+        <div class="layer">
+          <span>Cosa contiene il chip</span>
+          <div class="cells" id="cells" aria-hidden="true"></div>
+        </div>
+        <figcaption>
+          <span><i style="background:var(--cell-other)"></i>Altri file</span>
+          <span><i style="background:var(--line)"></i>La sovrascrittura</span>
+          <span><i style="background:repeating-linear-gradient(135deg,var(--ink-3) 0 2px,transparent 2px 5px);box-shadow:inset 0 0 0 1.2px var(--ink-3)"></i>Vecchio contenuto, in attesa di cancellazione</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- schermate -->
+  <section class="sec screens shade">
+    <div class="wrap">
+      <h2>Prudente per impostazione, a ogni passo.</h2>
+      <div class="viewer-wrap">
+        <div class="tabs" role="tablist" aria-label="Schermate dell'app" aria-orientation="vertical" id="shot-tabs">
+          <span class="ind" aria-hidden="true"></span>
+          <button role="tab" id="st-1" aria-controls="sf-1" aria-selected="true"><b>Sfoglia</b><span>Tocca per selezionare file e cartelle. Ogni tipo ha la sua icona.</span></button>
+          <button role="tab" id="st-2" aria-controls="sf-2" aria-selected="false" tabindex="-1"><b>Anteprima</b><span>Tocca un'icona per vedere cosa stai per distruggere, con nome e cartella completi.</span></button>
+          <button role="tab" id="st-3" aria-controls="sf-3" aria-selected="false" tabindex="-1"><b>Conferma</b><span>Controlla l'elenco e lo schema, scrivi SHRED e sblocca ancora una volta.</span></button>
+          <button role="tab" id="st-4" aria-controls="sf-4" aria-selected="false" tabindex="-1"><b>Distruzione</b><span>File per file, passata per passata, con il tempo rimasto. Continua anche se esci dall'app.</span></button>
+          <button role="tab" id="st-5" aria-controls="sf-5" aria-selected="false" tabindex="-1"><b>Impostazioni</b><span>Ogni passaggio si può regolare, e ogni impostazione dice cosa fa.</span></button>
+        </div>
+        <div class="viewer">
+          <figure class="active" id="sf-1" role="tabpanel" aria-labelledby="st-1"><img src="/assets/scorch/browser.webp" width="540" height="1200" loading="lazy" alt="Browser dei file con tre file selezionati"><figcaption><b>Sfoglia</b>Seleziona file e cartelle.</figcaption></figure>
+          <figure id="sf-2" role="tabpanel" aria-labelledby="st-2"><img src="/assets/scorch/preview.webp" width="540" height="1200" loading="lazy" alt="Anteprima di un PDF prima di distruggerlo, con cartella, dimensione e data"><figcaption><b>Anteprima</b>Guarda cosa stai per distruggere.</figcaption></figure>
+          <figure id="sf-3" role="tabpanel" aria-labelledby="st-3"><img src="/assets/scorch/confirm.webp" width="540" height="1200" loading="lazy" alt="Schermata di conferma: l'operazione non si può annullare, i file e gli schemi di sovrascrittura"><figcaption><b>Conferma</b>Controlla, scrivi SHRED, sblocca.</figcaption></figure>
+          <figure id="sf-4" role="tabpanel" aria-labelledby="st-4"><img src="/assets/scorch/progress.webp" width="540" height="1200" loading="lazy" alt="Distruzione in corso: passata 1 di 3, velocità e tempo rimasto"><figcaption><b>Distruzione</b>Passata per passata, con il tempo rimasto.</figcaption></figure>
+          <figure id="sf-5" role="tabpanel" aria-labelledby="st-5"><img src="/assets/scorch/settings.webp" width="540" height="1200" loading="lazy" alt="Impostazioni di distruzione: schema, sorgente casuale, verifica e fsync dopo ogni passata"><figcaption><b>Impostazioni</b>Ogni passaggio si può regolare.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- caratteristiche -->
+  <section class="sec" id="features">
+    <div class="wrap spec-wrap">
+      <div>
+        <h2>Il resto della dotazione.</h2>
+        <p class="lede">Per gli altri posti in cui i tuoi file lasciano tracce.</p>
+      </div>
+      <dl class="spec">
+        <div><dt>Spazio libero</dt><dd>Lo riempie di dati casuali, così vengono sovrascritti anche i file eliminati dalle altre app, poi restituisce lo spazio</dd></div>
+        <div><dt>Metadati delle foto</dt><dd>Toglie da JPEG e PNG la posizione GPS, i dati di fotocamera e ora e le immagini extra nascoste che aggiungono i telefoni, senza ricomprimere. Orientamento e colori restano com'erano</dd></div>
+        <div><dt>Da altre app</dt><dd>“Shred with Scorch” nei menu Apri con o Condividi di qualsiasi file manager. Scorch verifica byte per byte di aver trovato il file vero prima di proporre di distruggerlo</dd></div>
+        <div><dt>Nomi</dt><dd>I caratteri nascosti vengono scritti per esteso, così un programma travestito da PDF non può passare per un PDF</dd></div>
+        <div><dt>Usura della memoria</dt><dd>Mostra quanto è usurato il chip di memoria, sui telefoni che lo lasciano leggere alle app</dd></div>
+        <div><dt>Blocco</dt><dd>Impronta digitale o blocco schermo all'avvio e prima di ogni operazione, SHRED da scrivere, e niente screenshot</dd></div>
+        <div><dt>Prova a vuoto</dt><dd>Ogni operazione può dire cosa farebbe senza scrivere nulla</dd></div>
+        <div><dt>Privacy</dt><dd>Nessun permesso di rete, nessun account, nessuna pubblicità e nessuna traccia di ciò che hai distrutto</dd></div>
+        <div><dt>Sorgente</dt><dd>GPL-3.0-or-later, con compilazione riproducibile</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- installazione -->
+  <section class="sec shade" id="install">
+    <div class="wrap">
+      <h2>Scegli come installarla.</h2>
+      <p class="lede">Ogni modo installa la stessa app, firmata con la stessa chiave, così puoi cambiare in seguito
+        senza reinstallarla. Da computer, inquadra il codice con il telefono.</p>
+
+      <div class="installer">
+        <div class="tabs" role="tablist" aria-label="Modi per installarla" aria-orientation="vertical" id="way-tabs">
+          <span class="ind" aria-hidden="true"></span>
+          <button role="tab" id="wt-1" aria-controls="wp-1" aria-selected="true"><b>Obtainium</b><span>Il più semplice. Tiene Scorch aggiornata da sola.</span></button>
+          <button role="tab" id="wt-2" aria-controls="wp-2" aria-selected="false" tabindex="-1"><b>Repository F-Droid</b><span>Per chi usa F-Droid, Droid-ify o Neo Store.</span></button>
+          <button role="tab" id="wt-3" aria-controls="wp-3" aria-selected="false" tabindex="-1"><b>File APK</b><span>Installala a mano e controlla tu gli aggiornamenti.</span></button>
+        </div>
+        <div class="panels">
+          <div class="panel" id="wp-1" role="tabpanel" aria-labelledby="wt-1">
+            <div>
+              <h3>Aggiungila a Obtainium</h3>
+              <p>Obtainium installa Scorch direttamente dalle release ufficiali e la aggiorna quando esce una nuova
+                versione.</p>
+              <p class="note">Prima ti serve l'<a href="https://obtainium.imranr.dev/">app Obtainium</a> sul telefono.</p>
+              <a class="btn btn-ink" href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/HexRelic/scorch">Aggiungi a Obtainium</a>
+            </div>
+            <div class="qr"><img src="/assets/scorch/qr-obtainium.svg" width="168" height="168" alt="Codice QR: aggiungi Scorch a Obtainium"><span>Inquadra con il telefono</span></div>
+          </div>
+          <div class="panel" id="wp-2" role="tabpanel" aria-labelledby="wt-2" hidden>
+            <div>
+              <h3>Aggiungi il repository HexRelic</h3>
+              <p>Aggiungilo una volta in F-Droid, Droid-ify o Neo Store. Scorch si aggiornerà come qualsiasi altra
+                app, e così le altre app di HexRelic.</p>
+              <p class="note">Il tuo store mostrerà questa impronta. Deve corrispondere:</p>
+              <div class="fp"><code id="fp">BB1709DC3912D984DF24876838BCF2A168500F2072516125BA6C3BF942E1731E</code><button type="button" data-copy="fp">Copia</button></div>
+              <a class="btn btn-ink" href="https://fdroid.link/#https://hexrelic.github.io/fdroid/repo?fingerprint=BB1709DC3912D984DF24876838BCF2A168500F2072516125BA6C3BF942E1731E">Aggiungi il repository</a>
+            </div>
+            <div class="qr"><img src="/assets/qr-fdroid.svg" width="168" height="168" alt="Codice QR: aggiungi il repository F-Droid di HexRelic"><span>Inquadra con il telefono</span></div>
+          </div>
+          <div class="panel" id="wp-3" role="tabpanel" aria-labelledby="wt-3" hidden>
+            <div>
+              <h3>Scarica l'APK</h3>
+              <p>Scarica <code>scorch-1.0.0.apk</code> dalla pagina delle release e aprilo sul telefono. Dovrai
+                controllare tu se escono nuove versioni.</p>
+              <p class="note">Verificalo con <code>SHA256SUMS</code> e confronta il certificato di firma con quello
+                nelle <a href="https://github.com/HexRelic/scorch/blob/HEAD/docs/REPRODUCIBLE.md#signing-certificate" hreflang="en">note di compilazione</a> (in inglese).</p>
+              <a class="btn btn-ink" href="https://github.com/HexRelic/scorch/releases">Vai alle release</a>
+            </div>
+            <div class="qr"><img src="/assets/scorch/qr-releases.svg" width="168" height="168" alt="Codice QR: pagina delle release di Scorch"><span>Inquadra con il telefono</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="legal-note">Scorch distrugge dati di proposito, e non si torna indietro. Controlla cosa selezioni, e
+        provala prima su una copia o con la prova a vuoto (Dry run). È fornita così com'è, senza garanzia, nei
+        limiti consentiti dalla legge.</p>
+    </div>
+  </section>
+
+  <!-- domande -->
+  <section class="sec" id="faq">
+    <div class="wrap faq-wrap">
+      <h2>Prima di installarla.</h2>
+      <div class="faq">
+        <details>
+          <summary>Basta una passata?<span class="x" aria-hidden="true"></span></summary>
+          <p>Probabilmente sì. Su una memoria flash, come quella di un telefono o di un SSD, nessuna app può
+            essere sicura di riscrivere le celle esatte in cui stava un file: è il controller della memoria a
+            decidere dove va ogni scrittura, e può tenere copie vecchie fuori portata. Le passate in più passano
+            dallo stesso controller, quindi non rendono la cosa più certa. Per questo una passata casuale è la
+            scelta sensata; gli schemi più lunghi ci sono per le procedure che li chiedono per nome.</p>
+        </details>
+        <details>
+          <summary>Distruggere file consuma la memoria?<span class="x" aria-hidden="true"></span></summary>
+          <p>Un po', come qualsiasi scrittura. La memoria flash sopporta un numero limitato di scritture, e ogni
+            passata riscrive tutto il file, quindi sette passate su un file grande costano sette volte le scritture
+            di una sola. Usare Scorch ogni tanto non fa una differenza che noteresti. Se distruggi spesso molti
+            dati, o cancelli regolarmente lo spazio libero, una passata sola è la scelta più leggera, e la scheda
+            Storage wear mostra lo stato del chip sui telefoni che lo lasciano leggere alle app.</p>
+        </details>
+        <details>
+          <summary>Perché le serve l'accesso a tutti i file?<span class="x" aria-hidden="true"></span></summary>
+          <p>Le altre vie di Android spesso danno all'app una nuova copia del file su cui scrivere, lasciando
+            l'originale dov'era. Un distruggi-file che passasse da lì non sovrascriverebbe niente. Per scrivere
+            sopra i byte del file stesso, Scorch deve aprirlo nella sua posizione reale.</p>
+        </details>
+        <details>
+          <summary>Posso annullare una distruzione?<span class="x" aria-hidden="true"></span></summary>
+          <p>No, è proprio lo scopo. Prima che venga scritto qualcosa vedi ogni file, lo schema e una stima del
+            tempo, scrivi SHRED e sblocchi di nuovo il telefono. Per vedere cosa farebbe un'operazione senza
+            rischi, attiva Dry run nelle impostazioni.</p>
+        </details>
+        <details>
+          <summary>Funziona sulle schede SD?<span class="x" aria-hidden="true"></span></summary>
+          <p>Di solito sì. Alcune memorie, come certe schede SD e le cartelle sincronizzate col cloud, scrivono una
+            copia nuova invece di sovrascrivere sul posto. Scorch rilegge ogni passata per accorgersene, e se i byte
+            non coincidono si ferma con un errore e lascia il file dov'è.</p>
+        </details>
+        <details>
+          <summary>Scorch invia qualcosa da qualche parte?<span class="x" aria-hidden="true"></span></summary>
+          <p>Non può: non ha alcun permesso di rete. Tiene le impostazioni sul telefono, e un rapporto di errore
+            solo se si è bloccata, che ti mostra perché tu decida se inviarlo. Di ciò che hai distrutto non resta
+            traccia.</p>
+        </details>
+        <details>
+          <summary>Come so che l'app corrisponde al codice sorgente?<span class="x" aria-hidden="true"></span></summary>
+          <p>Le release si compilano in modo riproducibile: compilando la stessa versione dal sorgente pubblico si
+            ottiene un'app identica byte per byte, così chiunque può confermare che l'app pubblicata viene da quel
+            codice. <a href="https://github.com/HexRelic/scorch/blob/HEAD/docs/REPRODUCIBLE.md" hreflang="en">Le note di compilazione</a>
+            (in inglese) spiegano come.</p>
+        </details>
+        <details>
+          <summary>Quanto costa?<span class="x" aria-hidden="true"></span></summary>
+          <p>Niente. Scorch è libera e open source con licenza GNU GPL, versione 3 o successiva, senza pubblicità
+            né acquisti in-app.</p>
+        </details>
+        <details>
+          <summary>È stata usata l'IA per realizzarla?<span class="x" aria-hidden="true"></span></summary>
+          <p>HexRelic ha progettato e sviluppato Scorch con l'aiuto di modelli linguistici di grandi dimensioni, per
+            arrivarci più in fretta, e l'ha provata su emulatori e telefoni veri. L'app in sé non contiene alcuna
+            IA.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <div class="band" aria-hidden="true"></div>
+
+  <!-- chiusura -->
+  <section class="outro">
+    <div class="wrap">
+      <div class="outro-seal">
+        <svg viewBox="-110 -110 220 220" aria-hidden="true"><g id="outro-rings"></g></svg>
+        <img src="/assets/hexrelic-seal.png" width="256" height="256" alt="Sigillo di HexRelic">
+      </div>
+      <h2>Fatta da HexRelic, con altre app nello stesso repository.</h2>
+      <p>WitnessClip, un registratore vocale che sigilla ciò che registra, è pubblicato nello stesso repository
+        F-Droid. Aggiungilo una volta e ogni app di HexRelic si aggiorna da lì.</p>
+      <div class="ctas">
+        <a class="btn btn-ink" href="#install">Installa Scorch</a>
+        <a class="btn btn-line" href="/it/">Tutte le app di HexRelic</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="micro" aria-hidden="true" id="micro" data-text="scorch di hexrelic, certi file meritano il fuoco "></div>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="/it/"><img src="/assets/hexrelic-seal.png" width="256" height="256" alt="">HexRelic</a>
+        <p>App Android open source, compilate dal codice pubblico e firmate da HexRelic.</p>
+      </div>
+      <div>
+        <h4>Scorch</h4>
+        <ul>
+          <li><a href="https://github.com/HexRelic/scorch">Codice sorgente</a></li>
+          <li><a href="https://github.com/HexRelic/scorch/releases">Release</a></li>
+          <li><a href="https://github.com/HexRelic/scorch/blob/HEAD/CHANGELOG.md">Novità</a></li>
+          <li><a href="https://github.com/HexRelic/scorch/blob/HEAD/docs/USER-GUIDE.md" hreflang="en">Guida (in inglese)</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Documentazione</h4>
+        <ul>
+          <li><a href="https://github.com/HexRelic/scorch/blob/HEAD/docs/legal/PRIVACY.it.md">Informativa sulla privacy</a></li>
+          <li><a href="https://github.com/HexRelic/scorch/blob/HEAD/docs/legal/TERMS.it.md">Termini d'uso</a></li>
+          <li><a href="https://github.com/HexRelic/scorch/blob/HEAD/docs/REPRODUCIBLE.md" hreflang="en">Compilazione riproducibile</a></li>
+          <li><a href="https://github.com/HexRelic/scorch/blob/HEAD/SECURITY.md" hreflang="en">Politica di sicurezza</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>App di HexRelic</h4>
+        <ul>
+          <li><a href="/it/">Tutte le app</a></li>
+          <li><a href="/it/witnessclip/">WitnessClip</a></li>
+          <li><a href="/it/#add">Repository F-Droid</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contatti</h4>
+        <ul>
+          <li><a href="mailto:roundish-old-comic@duck.com">roundish-old-comic@duck.com</a></li>
+          <li><a href="https://github.com/HexRelic/scorch/issues">Segnala un problema</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 HexRelic. Codice con licenza GPL-3.0-or-later. Il nome e il logo di Scorch sono marchi di HexRelic.</span>
+      <span>Composto in Charter e JetBrains Mono (<a href="/fonts/LICENSES.txt">licenze dei caratteri</a>). Nessun cookie, nessun tracciamento.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/common.js"></script>
+<script src="/assets/scorch.js"></script>
+</body>
+</html>
